@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Constants } from "../Redux/Constants";
+import { Constants } from "../Config/Constants";
 
 const api_instance = axios.create({
   baseURL: Constants.API_URL,

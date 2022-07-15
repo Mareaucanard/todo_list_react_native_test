@@ -1,39 +1,53 @@
-import { login, register, Actions, LoginSuccessAction } from "./AuthCreator";
-import { put, call, all, fork, takeLatest, take } from "redux-saga/effects";
+import { put, call, takeLatest, all, fork } from "redux-saga/effects";
 import { loginRoute, registerRoute } from "../../Service/AuthService";
+import * as AuthCreator from "./AuthCreator";
 
 function* registerCall({
   payload: { email, password, firstname, name },
-}: ReturnType<typeof register.request>) {
+}: ReturnType<typeof AuthCreator.register.request>) {
   const params = { email, password, firstname, name };
   try {
+    console.log("Poggers!");
     const { data } = yield call(registerRoute, params);
     const { token, msg } = data;
 
     if (token === undefined) {
-      yield put(register.failure({ msg }));
+      console.log("Expected")
+      yield put(AuthCreator.register.failure({ msg, code: -1 }));
     } else {
-      yield put(register.success({ token }));
+      yield put(AuthCreator.register.success({ token }));
     }
   } catch (error: any) {
-    yield put(register.failure({ msg: "Error: " + error.toString() }));
+    console.error(error);
+    yield put(AuthCreator.register.failure({ msg: "Error: " + error.toString(), code: -1 }));
   }
 }
 
 function* loginCall({
   payload: { email, password },
-}: ReturnType<typeof login.request>) {
+}: ReturnType<typeof AuthCreator.login.request>) {
   const params = { email, password };
   try {
     const { data } = yield call(loginRoute, params);
     const { token, msg } = data;
 
+    console.log("Hello ?")
+    console.log(data)
     if (token === undefined) {
-      yield put(login.failure({ msg }));
+      yield put(AuthCreator.login.failure({ msg, code: -1 }));
     } else {
-      yield put(login.sucess({ token }));
+      yield put(AuthCreator.login.success({ token }));
     }
   } catch (error: any) {
-    yield put(login.failure({ msg: "Error: " + error.toString() }));
+    yield put(AuthCreator.login.failure({ msg: "Error: " + error.toString(), code: -1 }));
   }
+}
+
+function* watchOnAuth() {
+  yield takeLatest(AuthCreator.login.REQUEST, loginCall);
+  yield takeLatest(AuthCreator.register.REQUEST, registerCall);
+}
+
+export default function* authSagas() {
+  yield all([fork(watchOnAuth)]);
 }

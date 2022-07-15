@@ -33,14 +33,14 @@ export interface RegisterFailureAction {
 
 export const login = Tools.createAsyncAction<
   LoginAction,
-  LoginFailureAction,
-  LoginSuccessAction
+  LoginSuccessAction,
+  LoginFailureAction
 >("AuthTypes/LOGIN");
 
 export const register = Tools.createAsyncAction<
   RegisterAction,
-  RegisterFailureAction,
-  RegisterSuccessAction
+  RegisterSuccessAction,
+  RegisterFailureAction
 >("AuthTypes/REGISTER");
 
 export type Actions = ActionType<typeof login> | ActionType<typeof register>;

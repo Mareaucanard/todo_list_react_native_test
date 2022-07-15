@@ -23,5 +23,5 @@ export default {
     get: api_instance.get,
     put: api_instance.put,
     delete: api_instance.delete,
-    setToken
+    setToken: setToken
 }

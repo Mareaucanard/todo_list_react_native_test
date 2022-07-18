@@ -1,7 +1,7 @@
 import { View, StyleSheet, TouchableOpacity } from "react-native"
 import React from "react"
 import { useDispatch } from "react-redux"
-import { login } from "../Redux/Auth/AuthCreator"
+import { register } from "../Redux/Auth/AuthCreator"
 import { useState } from "react"
 import Field from "../Components/BasicField"
 import Colors from "../Config/Colors"
@@ -9,14 +9,16 @@ import Colors from "../Config/Colors"
 function RegisterForm(): JSX.Element {
   const [form, setForm] = useState({
     email: "",
-    password: ""
+    password: "",
+    firstname: "",
+    name: "",
   })
   const dispatch = useDispatch()
-  const HandleLogin = () => {
-    dispatch(login.request(form))
+  const Handleregister = () => {
+    dispatch(register.request(form))
   }
   const NoEmptyField = (): boolean | null | undefined => {
-    return !(form["email"] && form["password"])
+    return !(form["email"] && form["password"] && form["firstname"] && form["name"])
   }
   function handleChange(value: string, field: string) {
     setForm({ ...form, [field]: value })
@@ -26,11 +28,13 @@ function RegisterForm(): JSX.Element {
     <View style={Styles.container}>
       <Field name={"email"} value={form["email"]} onChange={handleChange}/>
       <Field name={"password"} value={form["password"]} onChange={handleChange}/>
+      <Field name={"firstname"} value={form["firstname"]} onChange={handleChange}/>
+      <Field name={"name"} value={form["name"]} onChange={handleChange}/>
       <TouchableOpacity
         style={Styles.button}
-        onPress={HandleLogin}
+        onPress={Handleregister}
         disabled={NoEmptyField()}
-      >Login</TouchableOpacity>
+      >Register</TouchableOpacity>
     </View>
   )
 }

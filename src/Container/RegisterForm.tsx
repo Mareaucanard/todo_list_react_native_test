@@ -24,6 +24,7 @@ function RegisterForm({ navigation }: any): JSX.Element {
   const dispatch = useDispatch()
   const Handleregister = () => {
     dispatch(register.request(form))
+    navigation.goBack()
   }
   const NoEmptyField = (): boolean | null | undefined => {
     return !(
@@ -35,10 +36,6 @@ function RegisterForm({ navigation }: any): JSX.Element {
   }
   function handleChange(value: string, field: string) {
     setForm({ ...form, [field]: value })
-  }
-
-  if (state.token) {
-    navigation.goBack()
   }
 
   return (

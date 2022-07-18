@@ -7,15 +7,19 @@ import Field from "../Components/BasicField"
 import Colors from "../Config/Colors"
 import { AppState } from "../Redux/RootReducer"
 import Button from "../Components/BasicButton"
-import { Constants } from "../Config/Constants"
+import { useEffect } from "react"
+import IsConnected from "../Utils/IsConnected"
 
 const tokenState = ({ auth }: AppState) => ({
   token: auth.token,
-  msg: auth.msg
+  msg: auth.msg,
 })
 
 function LoginForm({ navigation }: any): JSX.Element {
   const state = useSelector(tokenState)
+  useEffect(() => {
+    IsConnected(state.token) && navigation.goBack()
+  }, [state.token])
   const [form, setForm] = useState({
     email: "matthieu.fraiz@frenchappweb.com",
     password: "tototiti",
@@ -29,10 +33,6 @@ function LoginForm({ navigation }: any): JSX.Element {
   }
   function handleChange(value: string, field: string) {
     setForm({ ...form, [field]: value })
-  }
-
-  if (state.token) {
-    navigation.goBack()
   }
 
   return (

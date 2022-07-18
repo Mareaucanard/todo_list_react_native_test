@@ -1,4 +1,4 @@
-import { AuthCreator } from "."
+import * as AuthCreator from"./AuthCreator"
 import { Actions } from "./AuthCreator"
 
 export interface AuthState {

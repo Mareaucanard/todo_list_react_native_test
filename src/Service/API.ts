@@ -1,5 +1,5 @@
-import axios from "axios";
-import { Constants } from "../Config/Constants";
+import axios from "axios"
+import { Constants } from "../Config/Constants"
 
 const api_instance = axios.create({
   baseURL: Constants.API_URL,
@@ -8,7 +8,7 @@ const api_instance = axios.create({
     "Content-Type": "application/json",
   },
   timeout: 5000
-});
+})
 
 const setToken = (token: string) => {
     api_instance.defaults.headers.common = {

@@ -1,46 +1,46 @@
-import Tools from "../../Tools/Tools";
-import { ActionType } from "typesafe-actions";
+import Tools from "../../Tools/Tools"
+import { ActionType } from "typesafe-actions"
 
 export interface LoginAction {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export interface LoginSuccessAction {
-  token: string;
+  token: string
 }
 
 export interface LoginFailureAction {
-  code: number;
-  msg: string;
+  code: number
+  msg: string
 }
 
 export interface RegisterAction {
-  firstname: string;
-  name: string;
-  email: string;
-  password: string;
+  firstname: string
+  name: string
+  email: string
+  password: string
 }
 
 export interface RegisterSuccessAction {
-  token: string;
+  token: string
 }
 
 export interface RegisterFailureAction {
-  code: number;
-  msg: string;
+  code: number
+  msg: string
 }
 
 export const login = Tools.createAsyncAction<
   LoginAction,
   LoginSuccessAction,
   LoginFailureAction
->("AuthTypes/LOGIN");
+>("AuthTypes/LOGIN")
 
 export const register = Tools.createAsyncAction<
   RegisterAction,
   RegisterSuccessAction,
   RegisterFailureAction
->("AuthTypes/REGISTER");
+>("AuthTypes/REGISTER")
 
-export type Actions = ActionType<typeof login> | ActionType<typeof register>;
+export type Actions = ActionType<typeof login> | ActionType<typeof register>

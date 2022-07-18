@@ -1,53 +1,44 @@
-import { put, call, takeLatest, all, fork } from "redux-saga/effects";
-import { loginRoute, registerRoute } from "../../Service/AuthService";
-import * as AuthCreator from "./AuthCreator";
+import { put, call, takeLatest, all, fork } from "redux-saga/effects"
+import { loginRoute, registerRoute } from "../../Service/AuthService"
+import * as AuthCreator from "./AuthCreator"
 
 function* registerCall({
   payload: { email, password, firstname, name },
 }: ReturnType<typeof AuthCreator.register.request>) {
-  const params = { email, password, firstname, name };
+  const params = { email, password, firstname, name }
   try {
-    console.log("Poggers!");
-    const { data } = yield call(registerRoute, params);
-    const { token, msg } = data;
+    const { data } = yield call(registerRoute, params)
+    const { token, msg } = data
 
     if (token === undefined) {
-      console.log("Expected")
-      yield put(AuthCreator.register.failure({ msg, code: -1 }));
+      yield put(AuthCreator.register.failure({ msg, code: -1 }))
     } else {
-      yield put(AuthCreator.register.success({ token }));
+      yield put(AuthCreator.register.success({ token }))
     }
   } catch (error: any) {
-    console.error(error);
-    yield put(AuthCreator.register.failure({ msg: "Error: " + error.toString(), code: -1 }));
+    yield put(AuthCreator.register.failure({ msg: "Error: " + error.toString(), code: -1 }))
   }
 }
 
 function* loginCall({
   payload: { email, password },
 }: ReturnType<typeof AuthCreator.login.request>) {
-  const params = { email, password };
+  const params = { email, password }
   try {
-    const { data } = yield call(loginRoute, params);
-    const { token, msg } = data;
+    const { data } = yield call(loginRoute, params)
+    const { token } = data
 
-    console.log("Hello ?")
-    console.log(data)
-    if (token === undefined) {
-      yield put(AuthCreator.login.failure({ msg, code: -1 }));
-    } else {
-      yield put(AuthCreator.login.success({ token }));
-    }
+    yield put(AuthCreator.login.success({ token }))
   } catch (error: any) {
-    yield put(AuthCreator.login.failure({ msg: "Error: " + error.toString(), code: -1 }));
+    yield put(AuthCreator.login.failure({ msg: "Error: " + error.toString(), code: -1 }))
   }
 }
 
 function* watchOnAuth() {
-  yield takeLatest(AuthCreator.login.REQUEST, loginCall);
-  yield takeLatest(AuthCreator.register.REQUEST, registerCall);
+  yield takeLatest(AuthCreator.login.REQUEST, loginCall)
+  yield takeLatest(AuthCreator.register.REQUEST, registerCall)
 }
 
 export default function* authSagas() {
-  yield all([fork(watchOnAuth)]);
+  yield all([fork(watchOnAuth)])
 }

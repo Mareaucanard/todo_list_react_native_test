@@ -1,6 +1,6 @@
-import { createAsyncAction } from "typesafe-actions";
+import { createAsyncAction } from "typesafe-actions"
 
-type ErrorAction = { error: Error | string };
+type ErrorAction = { error: Error | string }
 
 const Tools = {
   createAsyncAction: <
@@ -19,8 +19,8 @@ const Tools = {
       REQUEST: `${actionName}_REQUEST`,
       SUCCESS: `${actionName}_SUCCESS`,
       FAILURE: `${actionName}_FAILURE`,
-    };
+    }
   },
-};
+}
 
-export default Tools;
+export default Tools

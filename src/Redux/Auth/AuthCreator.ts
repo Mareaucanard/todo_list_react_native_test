@@ -1,6 +1,8 @@
 import Tools from "../../Tools/Tools"
 import { ActionType } from "typesafe-actions"
 
+export interface Logout {}
+
 export interface LoginAction {
   email: string
   password: string
@@ -43,4 +45,8 @@ export const register = Tools.createAsyncAction<
   RegisterFailureAction
 >("AuthTypes/REGISTER")
 
-export type Actions = ActionType<typeof login> | ActionType<typeof register>
+export const logout = Tools.createAsyncAction<
+  Logout
+>("Authtypes/LOGOUT")
+
+export type Actions = ActionType<typeof login> | ActionType<typeof register> | ActionType<typeof logout>

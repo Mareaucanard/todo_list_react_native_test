@@ -29,9 +29,9 @@ export async function getProfileRoute() {
 }
 
 export async function updateProfileRoute(id: number, params: any) {
-  return await request.put("/user/" + id, params)
+  return await request.put("/users/" + id, params)
 }
 
 export async function deleteProfileRoute(id: number) {
-  return await request.delete("/user/" + id)
+  return await request.delete("/users/" + id)
 }

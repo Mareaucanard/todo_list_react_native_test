@@ -5,7 +5,8 @@ import {
   deleteProfileRoute,
 } from "../../Service/ProfileService"
 import * as ProfileCreator from "./ProfileCreator"
-import API from "../../Service/API"
+import { useDispatch } from "react-redux"
+import { logout } from "../Auth/AuthCreator"
 
 function* getProfileCall() {
   try {
@@ -39,7 +40,9 @@ function* deleteProfileCall({
 }: ReturnType<typeof ProfileCreator.deleteProfile.request>) {
   try {
     const { data } = yield call(deleteProfileRoute, id)
+    const dispatch = useDispatch()
 
+    dispatch(logout.request({}))
     yield put(ProfileCreator.deleteProfile.success({ msg: data.msg }))
   } catch (error: any) {
     yield put(ProfileCreator.deleteProfile.failure({ error }))

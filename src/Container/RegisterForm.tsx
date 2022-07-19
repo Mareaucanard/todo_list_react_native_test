@@ -8,6 +8,8 @@ import Colors from "../Config/Colors"
 import { useSelector } from "react-redux"
 import { AppState } from "../Redux/RootReducer"
 import Button from "../Components/BasicButton"
+import { useEffect } from "react"
+import IsConnected from "../Utils/IsConnected"
 
 const tokenState = ({ auth }: AppState) => ({
   token: auth.token,
@@ -22,9 +24,11 @@ function RegisterForm({ navigation }: any): JSX.Element {
     name: "",
   })
   const dispatch = useDispatch()
+  useEffect(() => {
+    IsConnected(state.token) && navigation.goBack()
+  }, [state.token])
   const Handleregister = () => {
     dispatch(register.request(form))
-    navigation.goBack()
   }
   const NoEmptyField = (): boolean | null | undefined => {
     return !(
@@ -45,6 +49,7 @@ function RegisterForm({ navigation }: any): JSX.Element {
         name={"password"}
         value={form["password"]}
         onChange={handleChange}
+        secureTextEntry={true}
       />
       <Field
         name={"firstname"}

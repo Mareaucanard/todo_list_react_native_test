@@ -39,6 +39,7 @@ function LoginForm({ navigation }: any): JSX.Element {
     <View style={Styles.container}>
       <Field name={"email"} value={form["email"]} onChange={handleChange} />
       <Field
+        secureTextEntry={true}
         name={"password"}
         value={form["password"]}
         onChange={handleChange}

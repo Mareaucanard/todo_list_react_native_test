@@ -3,10 +3,9 @@ import Todo from "../../Interface/Todo"
 import Tools from "../../Tools/Tools"
 
 export interface GetTodosAction {
-  id: number
 }
 
-export interface GetTodosSucess {
+export interface GetTodosSuccess {
   todos: Todo[]
 }
 
@@ -18,7 +17,7 @@ export interface CreateTodoAction {
   todo: Todo
 }
 
-export interface CreateTodoSucess {
+export interface CreateTodoSuccess {
   todo: Todo
 }
 
@@ -30,7 +29,7 @@ export interface DeleteTodoAction {
   id: number
 }
 
-export interface DeleteTodoSucess {
+export interface DeleteTodoSuccess {
   msg: string
 }
 
@@ -42,7 +41,7 @@ export interface UpdateTodoAction {
   todo: Todo
 }
 
-export interface UpdateTodoSucess {
+export interface UpdateTodoSuccess {
   todo: Todo
 }
 
@@ -52,25 +51,25 @@ export interface UpdateTodoFailre {
 
 export const getTodos = Tools.createAsyncAction<
   GetTodosAction,
-  GetTodosSucess,
+  GetTodosSuccess,
   GetTodoFailure
 >("Todos/GET")
 
 export const createTodo = Tools.createAsyncAction<
   CreateTodoAction,
-  CreateTodoSucess,
+  CreateTodoSuccess,
   CreateTodoFailure
 >("Todos/CREATE")
 
 export const updateTodo = Tools.createAsyncAction<
   UpdateTodoAction,
-  UpdateTodoSucess,
+  UpdateTodoSuccess,
   UpdateTodoFailre
 >("Todos/UPDATE")
 
 export const deleteTodo = Tools.createAsyncAction<
   DeleteTodoAction,
-  DeleteTodoSucess,
+  DeleteTodoSuccess,
   DeleteTodoFailure
 >("Todos/DELETE")
 

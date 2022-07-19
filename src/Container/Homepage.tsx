@@ -1,12 +1,13 @@
-import { Text, View, StyleSheet } from "react-native"
-import { useSelector } from "react-redux"
-import IsConnected from "../Utils/IsConnected"
-import { AppState } from "../Redux/RootReducer"
-import { useNavigation } from "@react-navigation/native"
-import Button from "../Components/BasicButton"
-import Colors from "../Config/Colors"
-import React from "react"
-import LoggedInHomePage from "./LoggedInHomepage"
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+
+import Button from '../Components/BasicButton';
+import Colors from '../Config/Colors';
+import { AppState } from '../Redux/RootReducer';
+import IsConnected from '../Utils/IsConnected';
+import LoggedInHomePage from './LoggedInHomepage';
 
 const tokenState = ({ auth }: AppState) => ({
   token: auth.token,
@@ -19,7 +20,6 @@ function HomePage(): JSX.Element {
 
   if (isConnected) {
     return <LoggedInHomePage />
-    // Need to add buttons to navigate to app features
   } else {
     return (
       <View style={Styles.notLoggedIn}>

@@ -10,9 +10,8 @@ import {
 function* getTodosCall() {
   try {
     const { data } = yield call(getTodosRoute)
-    const { todos } = data
 
-    yield put(getTodos.success({ todos }))
+    yield put(getTodos.success({todos: data}))
   } catch (error) {
     yield put(getTodos.failure({ error }))
   }
@@ -24,9 +23,8 @@ function* createTodoCall({
   const params = todo
   try {
     const { data } = yield call(createTodoRoute, params)
-    const { todo } = data
 
-    yield put(createTodo.success(todo))
+    yield put(createTodo.success({todo: data}))
   } catch (error) {
     yield put(createTodo.failure({ error }))
   }

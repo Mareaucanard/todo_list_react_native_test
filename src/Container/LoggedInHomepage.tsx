@@ -1,12 +1,14 @@
-import HomepageHeader from "../Components/HomepageHeader"
-import { View } from "react-native"
-import Colors from "../Config/Colors"
+import { View } from 'react-native';
+
+import HomepageHeader from '../Components/HomepageHeader';
+import TodoList from '../Components/TodoList';
+import Colors from '../Config/Colors';
 
 function LoggedInHomePage() {
-  // Fetch todos here!
   return (
     <View style={{backgroundColor: Colors.background}}>
       <HomepageHeader />
+      <TodoList/>
     </View>
   )
 }

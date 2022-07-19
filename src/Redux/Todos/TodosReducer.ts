@@ -47,7 +47,7 @@ export default function profileReducer(
         return {
             ...state,
             isLoading: false,
-            todos: state.todos?.push(action.payload.todo)
+            todo: state.todos
         }
     case TodosCreator.updateTodo.SUCCESS:
         const modified_index = state.todos?.indexOf((item) => (action.payload.todo.id === item.id))

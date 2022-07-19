@@ -4,7 +4,7 @@ import { ActionType } from "typesafe-actions"
 export interface GetProfileAction {
 }
 
-export interface GetProfileSucess {
+export interface GetProfileSuccess {
   id: number
   email: string
   firstname: string
@@ -23,7 +23,7 @@ export interface UpdateProfileAction {
   name: string
 }
 
-export interface UpdateProfileSucess {
+export interface UpdateProfileSuccess {
   id: number
   email: string
   firstname: string
@@ -38,7 +38,7 @@ export interface DeleteProfileAction {
   id: number
 }
 
-export interface DeleteProfileSucess {
+export interface DeleteProfileSuccess {
   msg: string
 }
 
@@ -48,19 +48,19 @@ export interface DeleteProfileFailure {
 
 export const getProfile = Tools.createAsyncAction<
   GetProfileAction,
-  GetProfileSucess,
+  GetProfileSuccess,
   GetProfileFailure
 >("Profile/GET")
 
 export const updateProfile = Tools.createAsyncAction<
   UpdateProfileAction,
-  UpdateProfileSucess,
+  UpdateProfileSuccess,
   UpdateProfileFailure
 >("Profile/UPDATE")
 
 export const deleteProfile = Tools.createAsyncAction<
   DeleteProfileAction,
-  DeleteProfileSucess,
+  DeleteProfileSuccess,
   DeleteProfileFailure
 >("Profile/DELETE")
 

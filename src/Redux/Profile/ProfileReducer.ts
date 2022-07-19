@@ -1,5 +1,5 @@
-import { Actions } from "./ProfileCreator"
-import { ProfileCreator } from "."
+import { Actions } from './ProfileCreator';
+import * as ProfileCreator from './ProfileCreator';
 
 export interface ProfileState {
   isLoading: boolean

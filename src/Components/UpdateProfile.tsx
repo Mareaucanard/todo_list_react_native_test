@@ -35,7 +35,7 @@ function UpdateProfile({userData}: Props): JSX.Element {
     }
     function handleChange(value: string, field: string) {
         setForm({ ...form, [field]: value })
-      }
+    }
     return <View>
         <Field name={"email"} value={form["email"]} onChange={handleChange}/>
         <Field name={"password"} value={form["password"]} onChange={handleChange} secureTextEntry={true}/>

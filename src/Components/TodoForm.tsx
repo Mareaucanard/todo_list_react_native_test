@@ -6,19 +6,17 @@ import Colors from "../Config/Colors"
 import ISOtoReadable from "../Utils/ISOToReadable"
 import Button from "./BasicButton"
 import Field from "./BasicField"
+import Todo from "../Interface/Todo"
 
 interface Props {
   onSubmit: (arg0: object) => void
+  defaultForm: Todo
 }
 
-function TodoForm({ onSubmit }: Props): JSX.Element {
+function TodoForm({ onSubmit, defaultForm}: Props): JSX.Element {
   const items = ["not started", "todo", "in progress", "done"]
-  const [form, setForm] = useState({
-    title: "",
-    description: "",
-    due_time: ISOtoReadable(new Date()),
-    status: "not started",
-  })
+  console.log(defaultForm)
+  const [form, setForm] = useState(defaultForm)
   function Change(value: any, field: string) {
     if (field === "due time") {
       field = "due_time"

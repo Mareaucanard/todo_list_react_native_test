@@ -52,7 +52,8 @@ const Styles = StyleSheet.create({
   },
   button: {
     marginBottom: 3,
-    marginTop: 3
+    marginTop: 3,
+    backgroundColor: "red"
   }
 })
 

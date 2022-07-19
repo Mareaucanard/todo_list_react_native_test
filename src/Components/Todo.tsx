@@ -16,7 +16,7 @@ function TodoElem({ todo }: Props): JSX.Element {
       <Text style={Styles.date_text}>
         Created on {DateToFancy(todo.created_at)}
       </Text>
-      <Text style={Styles.date_text}>Due the {DateToFancy(todo.due_time)}</Text>
+      <Text style={Styles.date_text}>Due on {DateToFancy(todo.due_time)}</Text>
       <Text style={Styles.status}>{todo.status}</Text>
     </View>
   )

@@ -41,6 +41,7 @@ function TodoList(): JSX.Element {
   if (state.loading === true) {
     return <Text>Loading ♡</Text>
   } else if (state.error !== undefined || state.todos === undefined) {
+    console.log(state);
     return <Text>Something went wrong D:</Text>
   } else if (state.todos?.length === 0) {
     return <Text>You have no todos :(</Text>

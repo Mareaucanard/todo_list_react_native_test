@@ -8,6 +8,7 @@ import Colors from "../Config/Colors"
 import { ProfileCreator } from "../Redux/Profile"
 import { AppState } from "../Redux/RootReducer"
 import { TodosCreator } from "../Redux/Todos"
+import ISOtoReadable from "../Utils/ISOToReadable"
 
 const IdState = ({ profile, todos }: AppState) => ({
   id: profile.id,
@@ -32,8 +33,16 @@ function AddTodo(): JSX.Element {
     return <Text>Your todo was created!</Text>
   } else {
     return (
-      <View style={{backgroundColor: Colors.background}}>
-        <TodoForm onSubmit={onSubmit} />
+      <View style={{ backgroundColor: Colors.background }}>
+        <TodoForm
+          onSubmit={onSubmit}
+          defaultForm={{
+            title: "",
+            description: "",
+            due_time: ISOtoReadable(new Date()),
+            status: "not started",
+          }}
+        />
         {hasSubtimed === true && <Text>Something went wrong :(</Text>}
       </View>
     )

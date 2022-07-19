@@ -3,7 +3,6 @@ import { useState } from "react";
 import { View, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { ProfileCreator } from "../Redux/Profile";
-import Colors from "../Config/Colors";
 import { AppState } from "../Redux/RootReducer";
 import Button from "./BasicButton";
 import Field from "./BasicField";

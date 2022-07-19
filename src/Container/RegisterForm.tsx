@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native"
+import { View, StyleSheet } from "react-native"
 import React from "react"
 import { useDispatch } from "react-redux"
 import { register } from "../Redux/Auth/AuthCreator"

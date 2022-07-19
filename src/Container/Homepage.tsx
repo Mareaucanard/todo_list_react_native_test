@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View, StyleSheet } from "react-native"
+import { Text, View, StyleSheet } from "react-native"
 import { useSelector } from "react-redux"
 import IsConnected from "../Utils/IsConnected"
 import { AppState } from "../Redux/RootReducer"

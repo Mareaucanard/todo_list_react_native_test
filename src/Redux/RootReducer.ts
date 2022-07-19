@@ -1,13 +1,15 @@
 import { combineReducers } from "redux"
 import authReducer from "./Auth/AuthReducer"
 import profileReducer from "./Profile/ProfileReducer"
+import todosReducer from "./Todos/TodosReducer"
 import { AuthCreator } from "./Auth"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const AppReducer = combineReducers({
     auth: authReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    todos: todosReducer
 })
 
 export const RootReducer = (state: any, action: any) => {

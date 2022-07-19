@@ -1,6 +1,5 @@
 import { Actions } from "./ProfileCreator"
 import { ProfileCreator } from "."
-import Profile from "../../Container/Profile"
 
 export interface ProfileState {
   isLoading: boolean

@@ -15,7 +15,6 @@ interface Props {
 
 function TodoForm({ onSubmit, defaultForm}: Props): JSX.Element {
   const items = ["not started", "todo", "in progress", "done"]
-  console.log(defaultForm)
   const [form, setForm] = useState(defaultForm)
   function Change(value: any, field: string) {
     if (field === "due time") {

@@ -1,15 +1,15 @@
-import React, { useState } from "react"
-import { useEffect } from "react"
-import { StyleSheet, View } from "react-native"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Button from "../Components/BasicButton"
-import TodoElem from "../Components/Todo"
-import TodoForm from "../Components/TodoForm"
-import Colors from "../Config/Colors"
-import { TodosCreator } from "../Redux/Todos"
-import { AppState } from "../Redux/RootReducer"
-import { ProfileCreator } from "../Redux/Profile"
+import Button from '../Components/BasicButton';
+import TodoElem from '../Components/Todo';
+import TodoForm from '../Components/TodoForm';
+import Colors from '../Config/Colors';
+import { ProfileCreator } from '../Redux/Profile';
+import { AppState } from '../Redux/RootReducer';
+import { TodosCreator } from '../Redux/Todos';
 
 const IdState = ({ profile, todos }: AppState) => ({
   id: profile.id,
@@ -30,6 +30,7 @@ function SoloTodo({ route, navigation }): JSX.Element {
     dispatch(
       TodosCreator.updateTodo.request({ todo: { ...param, user_id: state.id } })
     )
+    navigation.goBack()
   }
 
   function onDelete() {
@@ -48,11 +49,13 @@ function SoloTodo({ route, navigation }): JSX.Element {
           />
         </View>
         <TodoElem todo={todo} />
-        {!state.loading && hasSubtimed && !state.error && <Text>Sucessfully edited!</Text>}
+        {!state.loading && hasSubtimed && !state.error && (
+          <Text>Sucessfully edited!</Text>
+        )}
       </View>
     )
   } else {
-    return <TodoForm defaultForm={todo} onSubmit={onSubmit}/>
+    return <TodoForm defaultForm={todo} onSubmit={onSubmit} />
   }
 }
 

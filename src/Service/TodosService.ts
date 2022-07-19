@@ -26,13 +26,10 @@ interface deleteResponse {
 }
 
 export async function getTodosRoute(): Promise<getReponse> {
-  console.log("Calling /user/todos")
   return await request.get("/user/todos")
 }
 
 export async function createTodoRoute(params: Todo): Promise<createReponse> {
-  console.log("Making a call with params")
-  console.log(params)
   return await request.post("/todos", params)
 }
 

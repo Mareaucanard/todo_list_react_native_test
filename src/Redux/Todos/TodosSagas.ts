@@ -40,7 +40,7 @@ function* updateTodoCall({
 
     yield put(updateTodo.success({ todo: data }))
   } catch (error) {
-    yield put(createTodo.failure({ error }))
+    yield put(updateTodo.failure({ error }))
   }
 }
 
@@ -49,7 +49,6 @@ function* deleteTodoCall({
 }: ReturnType<typeof deleteTodo.request>) {
   try {
     const { data } = yield call(deleteTodoRoute, id)
-    console.log(data)
     const { msg } = data
 
     yield put(deleteTodo.success({ msg }))

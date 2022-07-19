@@ -1,5 +1,6 @@
 import { Actions } from "./ProfileCreator"
 import { ProfileCreator } from "."
+import Profile from "../../Container/Profile"
 
 export interface ProfileState {
   isLoading: boolean
@@ -20,25 +21,35 @@ export default function profileReducer(
 ): ProfileState {
   switch (action.type) {
     case ProfileCreator.getProfile.REQUEST:
-        return {
-            ...state,
-            isLoading: true,
-            error: undefined
-        }
+    case ProfileCreator.updateProfile.REQUEST:
+    case ProfileCreator.deleteProfile.REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: undefined,
+      }
     case ProfileCreator.getProfile.SUCCESS:
-        return {
-            ...state,
-            isLoading: false,
-            id: action.payload.id,
-            email: action.payload.email,
-            name:action.payload.name,
-            firstname: action.payload.firstname
-        }
+    case ProfileCreator.updateProfile.SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        id: action.payload.id,
+        email: action.payload.email,
+        name: action.payload.name,
+        firstname: action.payload.firstname,
+      }
     case ProfileCreator.getProfile.FAILURE:
-        return {
-            isLoading: false,
-            error: action.payload.error
-        }
+    case ProfileCreator.deleteProfile.FAILURE:
+    case ProfileCreator.updateProfile.FAILURE:
+      return {
+        isLoading: false,
+        error: action.payload.error,
+      }
+    case ProfileCreator.deleteProfile.SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      }
     default:
       return state
   }

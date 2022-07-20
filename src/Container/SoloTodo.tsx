@@ -10,6 +10,7 @@ import Colors from '../Config/Colors';
 import { ProfileCreator } from '../Redux/Profile';
 import { AppState } from '../Redux/RootReducer';
 import { TodosCreator } from '../Redux/Todos';
+import Todo from '../Interface/Todo';
 
 const IdState = ({ profile, todos }: AppState) => ({
   id: profile.id,
@@ -17,25 +18,32 @@ const IdState = ({ profile, todos }: AppState) => ({
   error: todos.error,
 })
 
-function SoloTodo({ route, navigation }): JSX.Element {
-  const todo = route.params
+interface Props {
+  todo: Todo | null
+  onAction: () => void
+}
+
+function SoloTodo({ todo, onAction }: Props): JSX.Element {
   const [editing, setEditing] = useState(false)
   const state = useSelector(IdState)
-  const [hasSubtimed, changeSubmit] = useState(false)
   const dispatch = useDispatch()
-  useEffect(() => dispatch(ProfileCreator.getProfile.request({})), [])
-  function onSubmit(param: object) {
-    changeSubmit(true)
+  useEffect(() => {
+    dispatch(ProfileCreator.getProfile.request({}))
+  }, [])
+  function onSubmit(param: Todo) {
     setEditing(false)
     dispatch(
       TodosCreator.updateTodo.request({ todo: { ...param, user_id: state.id } })
     )
-    navigation.goBack()
+    onAction()
   }
 
   function onDelete() {
     dispatch(TodosCreator.deleteTodo.request({ id: todo.id }))
-    navigation.goBack()
+    onAction()
+  }
+  if (todo === null) {
+    return <Text>?</Text>
   }
   if (editing === false) {
     return (
@@ -49,13 +57,10 @@ function SoloTodo({ route, navigation }): JSX.Element {
           />
         </View>
         <TodoElem todo={todo} />
-        {!state.loading && hasSubtimed && !state.error && (
-          <Text>Sucessfully edited!</Text>
-        )}
       </View>
     )
   } else {
-    return <TodoForm defaultForm={todo} onSubmit={onSubmit} />
+    return <TodoForm defaultForm={todo} onSubmit={onSubmit} title={"Edit"}/>
   }
 }
 

@@ -1,4 +1,5 @@
 import React from "react"
+import { StyleProp, ViewStyle } from "react-native"
 import { View, Text, TextInput, StyleSheet } from "react-native"
 import Capitalize from "../Utils/Capitalize"
 
@@ -6,9 +7,9 @@ interface Props {
   name: string
   value: string
   onChange: ((arg0: string, arg1: string) => void) | ((arg0: string) => void)
-  containerStyle?: object
-  textStyle?: object
-  inputStyle?: object
+  containerStyle?: StyleProp<ViewStyle>
+  textStyle?: StyleProp<ViewStyle>
+  inputStyle?: StyleProp<ViewStyle>
   secureTextEntry?: boolean
 }
 

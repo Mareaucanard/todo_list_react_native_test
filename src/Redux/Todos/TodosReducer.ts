@@ -50,11 +50,8 @@ export default function profileReducer(
         todo: state.todos,
       }
     case TodosCreator.updateTodo.SUCCESS:
-      console.log(action.payload)
       const modified_index = state.todos?.map((e) => e.id).indexOf(action.payload.todo.id)
-      console.log("Modified index " + modified_index)
       state.todos[modified_index] = action.payload.todo
-      console.log(state.todos)
       return {
         ...state,
         isLoading: false,

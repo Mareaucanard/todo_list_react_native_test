@@ -21,8 +21,8 @@ function LoginForm({ navigation }: any): JSX.Element {
     IsConnected(state.token) && navigation.goBack()
   }, [state.token])
   const [form, setForm] = useState({
-    email: "matthieu.fraiz@frenchappweb.com",
-    password: "tototiti",
+    email: "",
+    password: "",
   })
   const dispatch = useDispatch()
   const HandleLogin = () => {
